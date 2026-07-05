@@ -44,10 +44,10 @@ func (r *ApplyRequest) Validate(availableFetchers []fetcher.Type) error {
 		if os.IsNotExist(err) {
 			return fmt.Errorf("provided filepath(%s) does not exist", path)
 		} else if err != nil {
-			return fmt.Errorf("error checking filepath(%s) - %w", err)
+			return fmt.Errorf("error checking filepath(%s) - %w", path, err)
 		}
 		if info.IsDir() {
-			return fmt.Errorf("provided filepath(%s) is a directory")
+			return fmt.Errorf("provided filepath(%s) is a directory", path)
 		}
 	}
 	if !slices.Contains(availableFetchers, r.FetcherType) {
